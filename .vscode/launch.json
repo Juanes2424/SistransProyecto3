@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<parranderos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "uniandes.edu.co.demo.DemoApplication",
+            "projectName": "parranderos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ProyectoApplication<parranderos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "uniandes.edu.co.demo.ProyectoApplication",
+            "projectName": "parranderos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -2,14 +2,12 @@ package uniandes.edu.co.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan({ "uniandes.edu.co.demo.repository" })
 @SpringBootApplication
-public class DemoApplication {
+public class ProyectoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(ProyectoApplication.class, args);
 	}
 
 }
