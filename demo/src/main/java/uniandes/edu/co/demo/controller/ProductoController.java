@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import uniandes.edu.co.demo.modelo.Categoria;
 import uniandes.edu.co.demo.modelo.Producto;
 import uniandes.edu.co.demo.repository.ProductoRepository;
 
