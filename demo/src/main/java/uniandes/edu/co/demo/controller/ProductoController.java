@@ -95,7 +95,6 @@ public class ProductoController {
             List<Document> resultado = avanzadosRepository.productosConCaracteristica(precio_inferior, precio_superior,
                     fecha_inferior, fecha_superior, sucursal_id, categoria_id);
 
-            // Retornar el resultado de la consulta
             return ResponseEntity.ok(resultado);
         } catch (Exception e) {
             e.printStackTrace();
@@ -107,9 +106,8 @@ public class ProductoController {
     @GetMapping("/rfc2/{id}")
     public ResponseEntity<List<Document>> rfc2(@PathVariable("id") int id) {
         try {
-            List<Document> resultado = avanzadosRepository.inventario();
+            List<Document> resultado = avanzadosRepository.inventario(id);
 
-            // Retornar el resultado de la consulta
             return ResponseEntity.ok(resultado);
         } catch (Exception e) {
             e.printStackTrace();

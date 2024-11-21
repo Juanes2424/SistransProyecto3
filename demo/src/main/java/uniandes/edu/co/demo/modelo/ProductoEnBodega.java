@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class ProductoEnBodega {
     @Id
+    private int _id;
     private String productoID;
     private int nivel_minimo_reorden;
     private int capacidad_almacenamiento;
@@ -20,8 +21,9 @@ public class ProductoEnBodega {
         ;
     }
 
-    public ProductoEnBodega(String productoID, int nivel_minimo_reorden, int capacidad_almacenamiento,
+    public ProductoEnBodega(int _id, String productoID, int nivel_minimo_reorden, int capacidad_almacenamiento,
             double costo_bodega, int total_existencias, double costo_promedio) {
+        this._id = _id;
         this.productoID = productoID;
         this.nivel_minimo_reorden = nivel_minimo_reorden;
         this.capacidad_almacenamiento = capacidad_almacenamiento;
