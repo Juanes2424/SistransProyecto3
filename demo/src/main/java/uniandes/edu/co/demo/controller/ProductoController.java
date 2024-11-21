@@ -1,13 +1,16 @@
 package uniandes.edu.co.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import uniandes.edu.co.demo.modelo.Producto;
+import uniandes.edu.co.demo.repository.AvanzadosRepository;
 import uniandes.edu.co.demo.repository.ProductoRepository;
 
 @RestController
@@ -16,6 +19,9 @@ public class ProductoController {
 
     @Autowired
     private ProductoRepository productoRepository;
+
+    @Autowired
+    private AvanzadosRepository avanzadosRepository;
 
     // Crear un nuevo producto
     @PostMapping("/new")
@@ -69,6 +75,44 @@ public class ProductoController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    // RFC1
+    @GetMapping("/rfc1")
+    public ResponseEntity<List<Document>> rfc1(@RequestBody Map<String, Object> params) {
+        try {
+            Integer precio_inferior = Integer.parseInt(params.get("precio_inferior").toString());
+            Integer precio_superior = Integer.parseInt(params.get("precio_superior").toString());
+
+            String fecha_inferior = params.get("fecha_inferior").toString();
+            String fecha_superior = params.get("fecha_superior").toString();
+
+            int sucursal_id = Integer.parseInt(params.get("sucursal_id").toString());
+            String categoria_id = params.get("categoria_id").toString();
+
+            List<Document> resultado = avanzadosRepository.productosConCaracteristica(precio_inferior, precio_superior,
+                    fecha_inferior, fecha_superior, sucursal_id, categoria_id);
+
+            // Retornar el resultado de la consulta
+            return ResponseEntity.ok(resultado);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    // RFC2
+    @GetMapping("/rfc2/{id}")
+    public ResponseEntity<List<Document>> rfc2(@PathVariable("id") int id) {
+        try {
+            List<Document> resultado = avanzadosRepository.inventario();
+
+            // Retornar el resultado de la consulta
+            return ResponseEntity.ok(resultado);
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
